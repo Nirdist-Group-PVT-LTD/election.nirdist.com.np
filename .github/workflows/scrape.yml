@@ -1,41 +1,38 @@
-name: Scrape Live Election Data
-
+name: Election Live Scraper
 on:
   schedule:
     - cron: '*/15 * * * *'
   workflow_dispatch:
 
 permissions:
-  contents: write # CRITICAL: Allows the bot to save data.json to your repo
+  contents: write
 
 jobs:
   scrape:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
+      - name: Checkout
         uses: actions/checkout@v4
-        
+
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
           python-version: '3.10'
-          
+
+      - name: Pre-create file
+        # This prevents the "pathspec" error if the scraper fails
+        run: touch data.json 
+
       - name: Install dependencies
         run: pip install requests beautifulsoup4
-        
+
       - name: Run scraper
         run: python scraper.py
-        
+
       - name: Commit and push
         run: |
-          git config user.name "Automated Scraper"
-          git config user.email "actions@github.com"
-          # Only add and commit if the file actually exists
-          if [ -f data.json ]; then
-            git add data.json
-            git commit -m "Update Results: $(date)" || echo "No changes"
-            git push
-          else
-            echo "Scraper failed to create data.json"
-            exit 1
-          fi
+          git config user.name "Nirdist-Election-Bot"
+          git config user.email "bot@nirdist.com.np"
+          git add data.json
+          git commit -m "Update March 6 Results" || echo "No changes"
+          git push
