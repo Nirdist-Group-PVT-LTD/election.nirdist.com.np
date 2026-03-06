@@ -1,0 +1,25 @@
+{
+    "last_updated": "2026-03-06 11:33:34",
+    "results": [
+        {
+            "party": "Rastriya Swatantra Party (RSP)",
+            "votes": 47,
+            "color": "#00aeef"
+        },
+        {
+            "party": "Nepali Congress (NC)",
+            "votes": 6,
+            "color": "#1a5a96"
+        },
+        {
+            "party": "CPN (UML)",
+            "votes": 4,
+            "color": "#dd0000"
+        },
+        {
+            "party": "Others",
+            "votes": 2,
+            "color": "#6B7280"
+        }
+    ]
+}
