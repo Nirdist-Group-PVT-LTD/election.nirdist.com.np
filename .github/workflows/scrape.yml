@@ -1,38 +1,29 @@
-name: Election Live Scraper
+name: Election Data Sync
 on:
   schedule:
-    - cron: '*/15 * * * *'
+    - cron: '*/5 * * * *'
   workflow_dispatch:
 
 permissions:
   contents: write
 
 jobs:
-  scrape:
+  build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Set up Python
+      - uses: actions/checkout@v4
+      - name: Setup Python
         uses: actions/setup-python@v4
         with:
           python-version: '3.10'
-
-      - name: Pre-create file
-        # This prevents the "pathspec" error if the scraper fails
-        run: touch data.json 
-
-      - name: Install dependencies
-        run: pip install requests beautifulsoup4
-
-      - name: Run scraper
+      - name: Create File
+        run: touch data.json
+      - name: Run Scraper
         run: python scraper.py
-
-      - name: Commit and push
+      - name: Push Updates
         run: |
-          git config user.name "Nirdist-Election-Bot"
+          git config user.name "Nirdist-Bot"
           git config user.email "bot@nirdist.com.np"
           git add data.json
-          git commit -m "Update March 6 Results" || echo "No changes"
+          git commit -m "Live Update: $(date)" || echo "No changes"
           git push
