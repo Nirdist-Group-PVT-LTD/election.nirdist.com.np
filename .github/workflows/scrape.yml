@@ -1,34 +1,41 @@
-name: Election Live Scraper
+name: Scrape Live Election Data
+
 on:
   schedule:
-    - cron: '*/5 * * * *' # Every 5 minutes
+    - cron: '*/15 * * * *'
   workflow_dispatch:
 
 permissions:
-  contents: write # THIS IS THE FIX: Grants permission to write data.json
+  contents: write # CRITICAL: Allows the bot to save data.json to your repo
 
 jobs:
   scrape:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
+      - name: Checkout repository
         uses: actions/checkout@v4
-
-      - name: Setup Python
+        
+      - name: Set up Python
         uses: actions/setup-python@v4
         with:
           python-version: '3.10'
-
-      - name: Install Dependencies
+          
+      - name: Install dependencies
         run: pip install requests beautifulsoup4
-
-      - name: Run Scraper
+        
+      - name: Run scraper
         run: python scraper.py
-
-      - name: Push Update
+        
+      - name: Commit and push
         run: |
-          git config user.name "NepalElectionBot"
-          git config user.email "bot@nepalvotes.live"
-          git add data.json
-          git commit -m "Live Update: $(date)" || echo "No changes"
-          git push
+          git config user.name "Automated Scraper"
+          git config user.email "actions@github.com"
+          # Only add and commit if the file actually exists
+          if [ -f data.json ]; then
+            git add data.json
+            git commit -m "Update Results: $(date)" || echo "No changes"
+            git push
+          else
+            echo "Scraper failed to create data.json"
+            exit 1
+          fi
