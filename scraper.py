@@ -2,7 +2,15 @@ import requests
 from bs4 import BeautifulSoup
 import json
 import datetime
+import os
+def save_data(data):
+    # This ensures the file is created in the current directory
+    with open('data.json', 'w') as f:
+        json.dump(data, f, indent=4)
 
+# Even if scraping fails, create an empty structure
+default_data = {"last_updated": "Pending", "results": []}
+save_data(default_data)
 def scrape_election_data():
     # Example URL (Replace with your actual target source)
     url = "https://example-nepal-news-portal.com/election-live"
