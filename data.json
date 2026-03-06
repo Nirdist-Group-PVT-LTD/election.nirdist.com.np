@@ -1,73 +1,47 @@
 {
-    "updated": "03:49 PM, Mar 06",
+    "updated": "2026-03-06 03:54 PM",
     "summary": {
-        "declared": 5,
-        "leading": 125
+        "declared": 12,
+        "leading": 153
     },
     "fptp": [
         {
             "party": "Rastriya Swatantra Party (RSP)",
-            "seats": 110,
+            "seats": 124,
             "color": "#00aeef"
         },
         {
             "party": "CPN (UML)",
-            "seats": 12,
+            "seats": 15,
             "color": "#dd0000"
         },
         {
             "party": "Nepali Congress (NC)",
-            "seats": 11,
+            "seats": 14,
             "color": "#1a5a96"
         },
         {
             "party": "Others",
-            "seats": 7,
-            "color": "#6B7280"
+            "seats": 12,
+            "color": "#64748b"
         }
     ],
     "pr": [
         {
             "party": "RSP",
-            "share": 58.2
+            "share": 59.4
         },
         {
             "party": "NC",
-            "share": 17.8
+            "share": 16.2
         },
         {
             "party": "UML",
-            "share": 12.1
+            "share": 13.8
         },
         {
             "party": "RPP",
-            "share": 9.0
-        }
-    ],
-    "hot_seats": [
-        {
-            "constituency": "Jhapa-5",
-            "leader": "Balendra Shah",
-            "l_votes": 18204,
-            "runner": "KP Oli",
-            "r_party": "UML",
-            "r_votes": 4120
-        },
-        {
-            "constituency": "Chitwan-2",
-            "leader": "Rabi Lamichhane",
-            "l_votes": 25110,
-            "runner": "NC Candidate",
-            "r_party": "NC",
-            "r_votes": 6120
-        },
-        {
-            "constituency": "Kathmandu-1",
-            "leader": "Ranju Neupane",
-            "l_votes": 9102,
-            "runner": "Prakash Singh",
-            "r_party": "NC",
-            "r_votes": 3104
+            "share": 8.1
         }
     ],
     "provinces": [
