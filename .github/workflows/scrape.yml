@@ -30,3 +30,17 @@ jobs:
           git add data.json
           git commit -m "Update election data" || exit 0
           git push
+
+      - name: Commit and push if changed
+        run: |
+          git config user.name "Automated Scraper"
+          git config user.email "actions@users.noreply.github.com"
+          # Check if data.json exists before trying to add it
+          if [ -f data.json ]; then
+            git add data.json
+            git commit -m "Update election data" || echo "No changes to commit"
+            git push
+          else
+            echo "data.json was not created. Check scraper.py for errors."
+            exit 1
+          fi
